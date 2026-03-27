@@ -1,0 +1,45 @@
+q1]
+
+package main 
+import ( 
+    "fmt" 
+    "os" 
+) 
+func main() { 
+    file, err := os.Create("myfile.txt") 
+    if err != nil { 
+        fmt.Println("Error:", err) 
+        return 
+    } 
+    defer file.Close() 
+    file.WriteString("Hello, Go!\n") 
+    fmt.Println("File created successfully!") 
+} 
+
+q2]
+
+package main 
+import "fmt" 
+type Employee struct { 
+    Eno    int 
+    Ename  string 
+    Salary float64 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of employees: ") 
+    fmt.Scan(&n) 
+    emps := make([]Employee, n) 
+    for i := 0; i < n; i++ { 
+        fmt.Printf("Enter eno, ename, salary: ") 
+        fmt.Scan(&emps[i].Eno, &emps[i].Ename, &emps[i].Salary) 
+    } 
+    min := emps[0] 
+    for _, e := range emps[1:] { 
+        if e.Salary < min.Salary { 
+            min = e 
+        } 
+    } 
+    fmt.Printf("Min Salary: Eno=%d Name=%s Salary=%.2f\n", 
+        min.Eno, min.Ename, min.Salary) 
+}
