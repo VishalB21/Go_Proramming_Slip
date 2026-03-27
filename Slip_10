@@ -1,0 +1,70 @@
+q1]
+
+package main 
+import "fmt" 
+func printType(i interface{}) { 
+    switch v := i.(type) { 
+    case int: 
+        fmt.Printf("int    : %d\n", v) 
+    case float64: 
+        fmt.Printf("float64: %.2f\n", v) 
+    case string: 
+        fmt.Printf("string : %s\n", v) 
+    case bool: 
+        fmt.Printf("bool   : %v\n", v) 
+    default: 
+        fmt.Printf("unknown: %T\n", v) 
+    } 
+} 
+func main() { 
+    values := []interface{}{42, 3.14, "Hello Go", true} 
+    for _, val := range values { 
+        printType(val) 
+    } 
+}
+
+q2]
+
+package main 
+import "fmt" 
+func fibonacci(n int, ch chan int) { 
+    a, b := 0, 1 
+    for i := 0; i < n; i++ { 
+        ch <- a 
+        a, b = b, a+b 
+    } 
+    close(ch) 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter terms: ") 
+    fmt.Scan(&n) 
+    ch := make(chan int) 
+    go fibonacci(n, ch) 
+    fmt.Print("Fibonacci: ") 
+    for val := range ch { 
+        fmt.Print(val, " ") 
+} 
+fmt.Println() 
+} package main 
+import "fmt" 
+func fibonacci(n int, ch chan int) { 
+    a, b := 0, 1 
+    for i := 0; i < n; i++ { 
+        ch <- a 
+        a, b = b, a+b 
+    } 
+    close(ch) 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter terms: ") 
+    fmt.Scan(&n) 
+    ch := make(chan int) 
+    go fibonacci(n, ch) 
+    fmt.Print("Fibonacci: ") 
+    for val := range ch { 
+        fmt.Print(val, " ") 
+} 
+fmt.Println() 
+} 
