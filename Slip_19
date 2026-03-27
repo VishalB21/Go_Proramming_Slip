@@ -1,0 +1,39 @@
+q1]
+ 
+package main 
+import "fmt" 
+func addSub(a, b int) (int, int) { 
+    return a + b, a - b 
+} 
+func main() { 
+    var a, b int 
+    fmt.Print("Enter two numbers: ") 
+    fmt.Scan(&a, &b) 
+    sum, diff := addSub(a, b) 
+    fmt.Printf("Sum        = %d\nDifference = %d\n", sum, diff) 
+} 
+
+q2]
+
+package main 
+import ( 
+    "bufio" 
+    "fmt" 
+    "os" 
+) 
+func main() { 
+    var filename string 
+    fmt.Print("Enter filename: ") 
+    fmt.Scan(&filename) 
+    file, err := os.OpenFile(filename, os.O_RDONLY, 0444) 
+    if err != nil { 
+        fmt.Println("Error:", err) 
+        return 
+    } 
+    defer file.Close() 
+    fmt.Println("Contents:") 
+    scanner := bufio.NewScanner(file) 
+    for scanner.Scan() { 
+        fmt.Println(scanner.Text()) 
+    } 
+} 
