@@ -1,0 +1,38 @@
+q1]
+
+package main 
+import "fmt" 
+func isTwoDigit(n int) bool { 
+    if n < 0 { 
+        n = -n 
+    } 
+    return n >= 10 && n <= 99 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter a number: ") 
+    fmt.Scan(&n) 
+    if isTwoDigit(n) { 
+        fmt.Printf("%d is a Two-Digit number\n", n) 
+    } else { 
+        fmt.Printf("%d is NOT a Two-Digit number\n", n) 
+    } 
+} 
+
+q2]
+
+package main 
+import "fmt" 
+func main() { 
+    ch := make(chan int, 5) 
+    ch <- 10 
+    ch <- 20 
+    ch <- 30 
+    fmt.Println("Capacity:", cap(ch)) 
+    fmt.Println("Length  :", len(ch)) 
+    v1 := <-ch 
+    v2 := <-ch 
+    fmt.Println("Read    :", v1, v2) 
+    fmt.Println("New Len :", len(ch)) 
+} 
+ 
