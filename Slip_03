@@ -1,0 +1,63 @@
+q1]
+
+package main 
+import "fmt" 
+func isPalindrome(s string) bool { 
+    reversed := "" 
+    for i := len(s) - 1; i >= 0; i-- { 
+        reversed += string(s[i]) 
+    } 
+    return s == reversed 
+} 
+func main() { 
+    str := "madam" 
+    if isPalindrome(str) { 
+        fmt.Println("Palindrome") 
+    } else { 
+        fmt.Println("Not Palindrome") 
+    } 
+} package main 
+import "fmt" 
+func isPalindrome(s string) bool { 
+    reversed := "" 
+    for i := len(s) - 1; i >= 0; i-- { 
+        reversed += string(s[i]) 
+    } 
+    return s == reversed 
+} 
+func main() { 
+    str := "madam" 
+    if isPalindrome(str) { 
+        fmt.Println("Palindrome") 
+    } else { 
+        fmt.Println("Not Palindrome") 
+    } 
+} 
+
+q2]
+
+package main 
+import "fmt" 
+type Employee struct { 
+    Eno    int 
+    Ename  string 
+    Salary float64 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of employees: ") 
+    fmt.Scan(&n) 
+    emps := make([]Employee, n) 
+    for i := 0; i < n; i++ { 
+        fmt.Printf("Enter eno, ename, salary: ") 
+        fmt.Scan(&emps[i].Eno, &emps[i].Ename, &emps[i].Salary) 
+    } 
+    max := emps[0] 
+    for _, e := range emps[1:] { 
+        if e.Salary > max.Salary { 
+            max = e 
+        } 
+    } 
+    fmt.Printf("Max Salary: Eno=%d Name=%s Salary=%.2f\n", 
+        max.Eno, max.Ename, max.Salary) 
+} 
