@@ -1,0 +1,38 @@
+q1]
+
+package main 
+import "fmt" 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of terms: ") 
+    fmt.Scan(&n) 
+    a, b := 0, 1 
+    fmt.Print("Fibonacci: ") 
+    for i := 0; i < n; i++ { 
+        fmt.Print(a, " ") 
+        a, b = b, a+b 
+    } 
+    fmt.Println() 
+} 
+
+q2]
+
+package main 
+import ( 
+    "fmt" 
+    "os" 
+) 
+func main() { 
+    var filename string 
+    fmt.Print("Enter filename: ") 
+    fmt.Scan(&filename) 
+    info, err := os.Stat(filename) 
+    if err != nil { 
+        fmt.Println("Error:", err) 
+        return 
+    } 
+    fmt.Println("Name    :", info.Name()) 
+    fmt.Println("Size    :", info.Size(), "bytes") 
+    fmt.Println("IsDir   :", info.IsDir()) 
+    fmt.Println("Mode    :", info.Mode()) 
+    fmt.Println("Modified:", info.ModTime())
