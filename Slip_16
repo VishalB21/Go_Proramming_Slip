@@ -1,0 +1,41 @@
+q1]
+
+package rect 
+ 
+func Area(l, w float64) float64 { 
+    return l * w 
+} 
+func Perimeter(l, w float64) float64 { 
+    return 2 * (l + w) 
+} 
+ 
+// File: main.go 
+package main 
+import ( 
+    "fmt" 
+    "rect" 
+) 
+func main() { 
+    var l, w float64 
+    fmt.Print("Enter length and width: ") 
+    fmt.Scan(&l, &w) 
+    fmt.Printf("Area      = %.2f\n", rect.Area(l, w)) 
+    fmt.Printf("Perimeter = %.2f\n", rect.Perimeter(l, w)) 
+} 
+
+q2]
+
+package main 
+import ( 
+    "fmt" 
+    "math/rand" 
+    "time" 
+) 
+func main() { 
+    rand.Seed(time.Now().UnixNano()) 
+    for i := 0; i <= 10; i++ { 
+        fmt.Printf("Number: %d\n", i) 
+        delay := time.Duration(rand.Intn(251)) * time.Millisecond 
+        time.Sleep(delay) 
+    } 
+} 
