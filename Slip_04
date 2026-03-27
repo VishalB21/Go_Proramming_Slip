@@ -1,0 +1,39 @@
+q1]
+
+package main 
+import "fmt" 
+func digitSum(n int) int { 
+    if n == 0 { 
+        return 0 
+    } 
+    return n%10 + digitSum(n/10) 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter a number: ") 
+    fmt.Scan(&n) 
+    fmt.Printf("Sum of digits of %d = %d\n", n, digitSum(n)) 
+} 
+
+q2]
+
+package main 
+import "fmt" 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of elements: ") 
+    fmt.Scan(&n) 
+    arr := make([]int, n) 
+    fmt.Println("Enter elements:") 
+    for i := 0; i < n; i++ { 
+        fmt.Scan(&arr[i]) 
+    } 
+    for i := 0; i < n-1; i++ { 
+        for j := 0; j < n-i-1; j++ { 
+            if arr[j] > arr[j+1] { 
+                arr[j], arr[j+1] = arr[j+1], arr[j] 
+            } 
+        } 
+    } 
+    fmt.Println("Sorted:", arr) 
+} 
