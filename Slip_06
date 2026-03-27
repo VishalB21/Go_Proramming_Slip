@@ -1,0 +1,92 @@
+q1]
+
+package main 
+import "fmt" 
+func main() { 
+    var r1, c1, r2, c2 int 
+    fmt.Print("Rows and cols of A: ") 
+    fmt.Scan(&r1, &c1) 
+    fmt.Print("Rows and cols of B: ") 
+    fmt.Scan(&r2, &c2) 
+    if c1 != r2 { 
+        fmt.Println("Multiplication not possible!") 
+        return 
+    } 
+    A := make([][]int, r1) 
+    B := make([][]int, r2) 
+    C := make([][]int, r1) 
+    for i := range A { 
+        A[i] = make([]int, c1) 
+    } 
+    for i := range B { 
+        B[i] = make([]int, c2) 
+    } 
+    for i := range C { 
+        C[i] = make([]int, c2) 
+    } 
+    fmt.Println("Enter Matrix A:") 
+    for i := 0; i < r1; i++ { 
+        for j := 0; j < c1; j++ { 
+            fmt.Scan(&A[i][j]) 
+        } 
+    } 
+    fmt.Println("Enter Matrix B:") 
+    for i := 0; i < r2; i++ { 
+        for j := 0; j < c2; j++ { 
+            fmt.Scan(&B[i][j]) 
+        } 
+    } 
+    for i := 0; i < r1; i++ { 
+        for j := 0; j < c2; j++ { 
+            for k := 0; k < c1; k++ { 
+                C[i][j] += A[i][k] * B[k][j] 
+            } 
+        } 
+    } 
+    fmt.Println("Result C = A x B:") 
+    for _, row := range C { 
+        fmt.Println(row) 
+    } 
+} 
+
+q2]
+
+package main 
+import "fmt" 
+func copyArr(src []int) []int { 
+    dst := make([]int, len(src)) 
+    copy(dst, src) 
+    return dst 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of elements: ") 
+    fmt.Scan(&n) 
+    arr := make([]int, n) 
+    fmt.Println("Enter elements:") 
+    for i := 0; i < n; i++ { 
+        fmt.Scan(&arr[i]) 
+    } 
+    copied := copyArr(arr) 
+    fmt.Println("Original:", arr) 
+    fmt.Println("Copied  :", copied) 
+} package main 
+import "fmt" 
+func copyArr(src []int) []int { 
+    dst := make([]int, len(src)) 
+    copy(dst, src) 
+    return dst 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of elements: ") 
+    fmt.Scan(&n) 
+    arr := make([]int, n) 
+    fmt.Println("Enter elements:") 
+    for i := 0; i < n; i++ { 
+        fmt.Scan(&arr[i]) 
+    } 
+    copied := copyArr(arr) 
+    fmt.Println("Original:", arr) 
+    fmt.Println("Copied  :", copied) 
+} 
