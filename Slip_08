@@ -1,0 +1,67 @@
+q1]
+
+package main 
+import "fmt" 
+type Book struct { 
+    BookID int 
+    Title  string 
+    Author string 
+    Price  float64 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of books: ") 
+    fmt.Scan(&n) 
+    books := make([]Book, n) 
+    for i := 0; i < n; i++ { 
+        fmt.Printf("Enter BookID, Title, Author, Price: ") 
+        fmt.Scan(&books[i].BookID, &books[i].Title, 
+            &books[i].Author, &books[i].Price) 
+    } 
+    for _, b := range books { 
+        fmt.Printf("ID:%d | %s | %s | %.2f\n", 
+            b.BookID, b.Title, b.Author, b.Price) 
+    } 
+} 
+
+q2]
+
+package main 
+import ( 
+    "fmt" 
+    "math" 
+) 
+type Shape interface { 
+    Area() float64 
+    Perimeter() float64 
+} 
+type Circle struct { 
+    Radius float64 
+} 
+type Rectangle struct { 
+    Length, Width float64 
+} 
+func (c Circle) Area() float64 { 
+    return math.Pi * c.Radius * c.Radius 
+} 
+func (c Circle) Perimeter() float64 { 
+    return 2 * math.Pi * c.Radius 
+} 
+func (r Rectangle) Area() float64 { 
+    return r.Length * r.Width 
+} 
+func (r Rectangle) Perimeter() float64 { 
+    return 2 * (r.Length + r.Width) 
+} 
+func printShape(s Shape) { 
+    fmt.Printf("Area      = %.2f\n", s.Area()) 
+    fmt.Printf("Perimeter = %.2f\n", s.Perimeter()) 
+} 
+func main() { 
+    c := Circle{Radius: 5} 
+    r := Rectangle{Length: 4, Width: 3} 
+    fmt.Println("Circle:") 
+    printShape(c) 
+    fmt.Println("Rectangle:") 
+    printShape(r) 
+} 
