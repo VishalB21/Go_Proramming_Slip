@@ -1,0 +1,53 @@
+q1]
+
+package main 
+import "fmt" 
+func isPalindrome(s string) bool { 
+    reversed := "" 
+    for i := len(s) - 1; i >= 0; i-- { 
+        reversed += string(s[i]) 
+    } 
+    return s == reversed 
+} 
+func main() { 
+    str := "madam" 
+    if isPalindrome(str) { 
+        fmt.Println("Palindrome") 
+    } else { 
+        fmt.Println("Not Palindrome") 
+    } 
+} 
+
+q2]
+
+package main 
+import "fmt" 
+type Shape interface { 
+    Area() float64 
+    Volume() float64 
+} 
+type Square struct { 
+    Side float64 
+} 
+type Rectangle struct { 
+    Length, Width float64 
+} 
+func (s Square) Area() float64 { 
+    return s.Side * s.Side 
+} 
+func (s Square) Volume() float64 { 
+    return s.Side * s.Side * s.Side 
+} 
+func (r Rectangle) Area() float64 { 
+    return r.Length * r.Width 
+} 
+func (r Rectangle) Volume() float64 { 
+    return r.Length * r.Width * r.Length 
+} 
+func main() { 
+    sq := Square{Side: 4} 
+rect := Rectangle{Length: 5, Width: 3} 
+fmt.Printf("Square:    
+Area=%.2f  Volume=%.2f\n", sq.Area(), sq.Volume()) 
+fmt.Printf("Rectangle: Area=%.2f  Volume=%.2f\n", rect.Area(), rect.Volume()) 
+} 
