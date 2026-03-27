@@ -1,0 +1,58 @@
+q1]
+
+package main 
+import "fmt" 
+func main() { 
+    var a, b float64 
+    var ch int 
+    fmt.Print("Enter two numbers: ") 
+    fmt.Scan(&a, &b) 
+    fmt.Println("1.Add  2.Sub  3.Mul  4.Div") 
+    fmt.Print("Enter choice: ") 
+    fmt.Scan(&ch) 
+    switch ch { 
+    case 1: 
+        fmt.Printf("Addition = %.2f\n", a+b) 
+    case 2: 
+        fmt.Printf("Subtraction = %.2f\n", a-b) 
+    case 3: 
+        fmt.Printf("Multiplication = %.2f\n", a*b) 
+    case 4: 
+        if b == 0 { 
+            fmt.Println("Division by zero!") 
+        } else { 
+            fmt.Printf("Division = %.2f\n", a/b) 
+        } 
+    default: 
+        fmt.Println("Invalid choice") 
+    } 
+} 
+
+q2]
+
+package main 
+import "fmt" 
+type Student struct { 
+    RollNo int 
+    Name   string 
+    Mark1  float64 
+    Mark2  float64 
+    Mark3  float64 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of students: ") 
+    fmt.Scan(&n) 
+    students := make([]Student, n) 
+for i := 0; i < n; i++ { 
+fmt.Printf("Enter rollno, name, m1, m2, m3: ") 
+fmt.Scan(&students[i].RollNo, &students[i].Name, 
+&students[i].Mark1, &students[i].Mark2, &students[i].Mark3) 
+} 
+for _, s := range students { 
+total := s.Mark1 + s.Mark2 + s.Mark3 
+avg := total / 3 
+fmt.Printf("Roll: %d | %s | Total: %.2f | Avg: %.2f\n", 
+s.RollNo, s.Name, total, avg) 
+} 
+} 
