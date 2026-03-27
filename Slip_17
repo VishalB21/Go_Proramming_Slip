@@ -1,0 +1,37 @@
+q1]
+
+package main 
+import "fmt" 
+func calculate(a, b float64) (float64, float64, float64, float64) { 
+    return a + b, a - b, a * b, a / b 
+} 
+func main() { 
+    var a, b float64 
+    fmt.Print("Enter two numbers: ") 
+    fmt.Scan(&a, &b) 
+    add, sub, mul, div := calculate(a, b) 
+    fmt.Printf("Add = %.2f\nSub = %.2f\nMul = %.2f\nDiv = %.2f\n", 
+        add, sub, mul, div) 
+} 
+
+q2]
+
+package main 
+import ( 
+    "fmt" 
+    "os" 
+) 
+func main() { 
+    file, err := os.OpenFile("data.txt", 
+        os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644) 
+    if err != nil { 
+        fmt.Println("Error:", err) 
+        return 
+    } 
+    defer file.Close() 
+    var text string 
+    fmt.Print("Enter text to append: ") 
+    fmt.Scan(&text) 
+    file.WriteString(text + "\n") 
+    fmt.Println("Appended successfully!") 
+} 
