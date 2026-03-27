@@ -1,0 +1,58 @@
+q1]
+
+package main 
+import "fmt" 
+func printTable(n int) { 
+    fmt.Printf("Table of %d:\n", n) 
+    for i := 1; i <= 10; i++ { 
+        fmt.Printf("%d x %d = %d\n", n, i, n*i) 
+    } 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter a number: ") 
+    fmt.Scan(&n) 
+    printTable(n) 
+} 
+
+q2]
+
+package calculator 
+ 
+import "fmt" 
+ 
+func Calculate(a, b float64, ch int) { 
+    switch ch { 
+    case 1: 
+        fmt.Printf("Addition       = %.2f\n", a+b) 
+    case 2: 
+        fmt.Printf("Subtraction    = %.2f\n", a-b) 
+    case 3: 
+        fmt.Printf("Multiplication = %.2f\n", a*b) 
+    case 4: 
+        if b == 0 { 
+            fmt.Println("Division by zero!") 
+        } else { 
+            fmt.Printf("Division       = %.2f\n", a/b) 
+        } 
+    default: 
+        fmt.Println("Invalid choice") 
+    } 
+} 
+ 
+// File: main.go 
+package main 
+import ( 
+"calculator" 
+"fmt" 
+) 
+func main() { 
+var a, b float64 
+var ch int 
+fmt.Print("Enter two numbers: ") 
+fmt.Scan(&a, &b) 
+fmt.Println("1.Add  2.Sub  3.Mul  4.Div") 
+fmt.Print("Enter choice: ") 
+fmt.Scan(&ch) 
+calculator.Calculate(a, b, ch) 
+} 
