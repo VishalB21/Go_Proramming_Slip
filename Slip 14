@@ -1,0 +1,64 @@
+q1]
+
+package main 
+import "fmt" 
+func main() { 
+    s := []int{10, 20, 30, 40, 50} 
+    fmt.Println("Original:", s) 
+    s = append(s, 60, 70) 
+    fmt.Println("Append  :", s) 
+    s2 := make([]int, len(s)) 
+    copy(s2, s) 
+    fmt.Println("Copy    :", s2) 
+    s = append(s[:2], s[3:]...) 
+    fmt.Println("Remove  :", s) 
+    fmt.Printf("Len=%d Cap=%d\n", len(s), cap(s)) 
+} 
+
+q2]
+
+package main 
+import ( 
+    "fmt" 
+    "sync" 
+) 
+func sumSquares(digits []int, ch chan<- int, wg *sync.WaitGroup) { 
+    defer wg.Done() 
+    sum := 0 
+    for _, d := range digits { 
+        sum += d * d 
+    } 
+    ch <- sum 
+} 
+func sumCubes(digits []int, ch chan<- int, wg *sync.WaitGroup) { 
+    defer wg.Done() 
+    sum := 0 
+    for _, d := range digits { 
+        sum += d * d * d 
+    } 
+    ch <- sum 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter a number (e.g. 123): ") 
+    fmt.Scan(&n) 
+    digits := []int{} 
+    temp := n 
+for temp > 0 { 
+digits = append([]int{temp % 10}, digits...) 
+temp /= 10 
+} 
+sqCh := make(chan int, 1) 
+cuCh := make(chan int, 1) 
+var wg sync.WaitGroup 
+wg.Add(2) 
+go sumSquares(digits, sqCh, &wg) 
+go sumCubes(digits, cuCh, &wg) 
+wg.Wait() 
+close(sqCh) 
+close(cuCh) 
+sq, cu := <-sqCh, <-cuCh 
+fmt.Printf("Sum of Squares = %d\nSum of Cubes   = %d\nFinal Sum      
+sq, cu, sq+cu) 
+= %d\n", 
+} 
