@@ -1,0 +1,49 @@
+q1]
+
+package main 
+import "fmt" 
+func swap(a, b *int) { 
+    *a, *b = *b, *a 
+} 
+func main() { 
+    x, y := 10, 20 
+    fmt.Printf("Before: x=%d y=%d\n", x, y) 
+    swap(&x, &y) 
+    fmt.Printf("After : x=%d y=%d\n", x, y) 
+} 
+
+q2]
+
+package main 
+import ( 
+    "fmt" 
+    "sync" 
+) 
+func printEven(nums []int, wg *sync.WaitGroup) { 
+    defer wg.Done() 
+    fmt.Print("Even: ") 
+    for _, n := range nums { 
+        if n%2 == 0 { 
+            fmt.Print(n, " ") 
+        } 
+    } 
+    fmt.Println() 
+} 
+func printOdd(nums []int, wg *sync.WaitGroup) { 
+    defer wg.Done() 
+    fmt.Print("Odd : ") 
+    for _, n := range nums { 
+        if n%2 != 0 { 
+            fmt.Print(n, " ") 
+        } 
+    } 
+    fmt.Println() 
+} 
+func main() { 
+    nums := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10} 
+    var wg sync.WaitGroup 
+    wg.Add(2) 
+    go printEven(nums, &wg) 
+    go printOdd(nums, &wg) 
+    wg.Wait() 
+}
