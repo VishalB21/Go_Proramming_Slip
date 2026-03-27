@@ -1,0 +1,62 @@
+q1]
+
+package main 
+import "fmt" 
+func minMax(arr []int) (int, int) { 
+    min, max := arr[0], arr[0] 
+    for _, v := range arr[1:] { 
+        if v < min { 
+            min = v 
+        } 
+        if v > max { 
+            max = v 
+        } 
+    } 
+    return min, max 
+} 
+func main() { 
+    var n int 
+    fmt.Print("Enter number of elements: ") 
+    fmt.Scan(&n) 
+    arr := make([]int, n) 
+    fmt.Println("Enter elements:") 
+    for i := range arr { 
+        fmt.Scan(&arr[i]) 
+    } 
+    min, max := minMax(arr) 
+    fmt.Printf("Minimum = %d\nMaximum = %d\n", min, max) 
+} 
+
+q2]
+
+package main 
+import ( 
+    "encoding/xml" 
+    "fmt" 
+    "os" 
+) 
+type Note struct { 
+    To      string `xml:"to"` 
+    From    string `xml:"from"` 
+    Heading string `xml:"heading"` 
+    Body    string `xml:"body"` 
+} 
+func main() { 
+    data := "<note><to>Student</to><from>Teacher</from><heading>Assignment</heading><body>Submit by 
+Friday!</body></note>" 
+os.WriteFile("notes.xml", []byte(data), 0644) 
+raw, err := os.ReadFile("notes.xml") 
+if err != nil { 
+fmt.Println("Error:", err) 
+return 
+} 
+var note Note 
+xml.Unmarshal(raw, &note) 
+fmt.Println("To     
+:", note.To) 
+fmt.Println("From   
+:", note.From) 
+fmt.Println("Heading:", note.Heading) 
+fmt.Println("Body   
+:", note.Body) 
+} 
